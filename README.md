@@ -1,7 +1,8 @@
-# Bash script to send message to telegram with telegram bot
-Taken from Konstantin Bogomolov site (https://bogomolov.tech/Telegram-notification-on-SSH-login/) 
+# Bash script to send message to telegram with [Telegram Bot](https://core.telegram.org/bots/api)
 
-Create telegram bot
+### Taken from Konstantin Bogomolov site (https://bogomolov.tech/Telegram-notification-on-SSH-login/) 
+
+##### Create telegram bot
 
 To send a message to Telegram group or channel, you should first create your own bot. Just open Telegram, find @BotFather and type /start. Then follow instructions to create bot and get token to access the HTTP API.
 Create Channel
@@ -33,12 +34,13 @@ Here is a response example:
 }
 ```
 
-Script to send message
+##### Script to send message
 
 In order to send a message we could use simple command:
 ```
 curl 'https://api.telegram.org/bot<YourBOTToken>/sendMessage?chat_id=<channel_id>&text=<text>'
 ```
+
 
 But in programming, it is good practice to hide the low-level implementation. So we will create a linux terminal command telegram-send and could send messages with this simple command.
 
@@ -46,6 +48,7 @@ Lets create file telegram-send.sh
 ```
 touch telegram-send.sh
 ```
+
 
 Then add script to this file. Set your group id and token in script.
 ```
@@ -74,43 +77,28 @@ fi
 curl -s --data "text=$1" --data "chat_id=$GROUP_ID" 'https://api.telegram.org/bot'$BOT_TOKEN'/sendMessage' > /dev/null
 ```
 
-It is not a good practice to store your token in that place, but for now, it is ok. Also, you could limit actions your bot could do in the Channel only to send messages.
+  
+##### It is not a good practice to store your token in that place, but for now, it is ok. Also, you could limit actions your bot could do in the Channel only to send messages.
 
-To run this script we should add permission
+##### To run this script we should add permission
 ```
 chmod +x telegram-send.sh
 ```
 
-Now you can test it
-```
-./telegram-send.sh "Test message"
-```
-
-In order to use this script from everywhere and type telegram-send instead ./telegram-send.sh add it to /usr/bin/ folder
+  
+##### In order to use this script from everywhere and type telegram-send instead ./telegram-send.sh add it to /usr/bin/ folder
 ```
 sudo mv telegram-send.sh /usr/bin/telegram-send
 ```
 
-Owner of all files in /usr/bin is root user. So let’s do the same with our script:
+  
+##### Owner of all files in /usr/bin is root user. So let’s do the same with our script:
 ```
 sudo chown root:root /usr/bin/telegram-send
 ```
 
-Now you can test it
+  
+##### Now you can test it
 ```
 telegram-send "Test message"
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
