@@ -1,4 +1,4 @@
-# Bash script for send message to telegram with telegram bot
+# Bash script to send message to telegram with telegram bot
 Taken from Konstantin Bogomolov site (https://bogomolov.tech/Telegram-notification-on-SSH-login/) 
 
 Create telegram bot
